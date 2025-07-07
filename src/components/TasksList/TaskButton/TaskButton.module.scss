@@ -1,0 +1,30 @@
+.button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+
+  &.default {
+    background-color: #007bff;
+  }
+  &.default:hover {
+    background-color: #0056b3;
+  }
+
+  &.danger {
+    background-color: #ff4d4f;
+  }
+  &.danger:hover {
+    background-color: #d9363e;
+  }
+
+  &.edit {
+    background-color: #28a745;
+  }
+  &.edit:hover {
+    background-color: #1e7e34;
+  }
+}
