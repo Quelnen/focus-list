@@ -6,25 +6,50 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   color: white;
+  font-size: 14px;
+  text-align: center;
+  box-sizing: border-box;
+  flex-shrink: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &.default {
     background-color: #007bff;
-  }
-  &.default:hover {
-    background-color: #0056b3;
+
+    &:hover {
+      background-color: #0056b3;
+    }
   }
 
   &.danger {
     background-color: #ff4d4f;
-  }
-  &.danger:hover {
-    background-color: #d9363e;
+
+    &:hover {
+      background-color: #d9363e;
+    }
   }
 
   &.edit {
     background-color: #28a745;
+
+    &:hover {
+      background-color: #1e7e34;
+    }
   }
-  &.edit:hover {
-    background-color: #1e7e34;
+
+  @media (max-width: 768px) {
+    flex: 1 1 auto;
+    max-width: 100%;
+  }
+
+  @media (max-width: 400px) {
+    flex: 0 1 calc(50% - 5px);
+  }
+
+  @media (max-width: 320px) {
+    flex: 1 1 100%;
+    width: 100%;
+    white-space: normal;
   }
 }

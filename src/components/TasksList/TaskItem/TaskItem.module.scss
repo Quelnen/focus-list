@@ -9,9 +9,15 @@
   max-width: 600px;
   width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 
-  @media (max-width: 480px) {
-    padding: 16px;
+  @media (max-width: 768px) {
+    padding: 18px;
+  }
+
+  @media (max-width: 320px) {
+    padding: 12px;
+    border-radius: 10px;
   }
 }
 
@@ -19,12 +25,23 @@
   font-size: 18px;
   font-weight: 600;
   word-break: break-word;
+  margin-bottom: 8px;
+
+  @media (max-width: 320px) {
+    font-size: 15px;
+  }
 }
 
 .description {
   font-size: 14px;
   color: #666;
   word-break: break-word;
+  margin-bottom: 12px;
+
+  @media (max-width: 320px) {
+    font-size: 12px;
+    line-height: 1.4;
+  }
 }
 
 .bottomRow {
@@ -33,7 +50,7 @@
   align-items: center;
   margin-top: 8px;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .status {
@@ -42,17 +59,45 @@
   color: #007bff;
   padding: 4px 10px;
   border-radius: 8px;
-}
+  white-space: nowrap;
 
-.button {
-  align-self: flex-end;
-
-  @media (max-width: 480px) {
-    align-self: stretch;
+  @media (max-width: 320px) {
+    font-size: 11px;
+    padding: 2px 6px;
   }
 }
 
 .buttonsRow {
   display: flex;
-  gap: 10px; 
+  gap: 10px;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 420px) {
+    width: 100%;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+  }
+}
+
+.button {
+  align-self: flex-end;
+  padding: 8px 12px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 320px) {
+    align-self: stretch;
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+  }
 }

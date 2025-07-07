@@ -1,5 +1,6 @@
 .formContainer {
   max-width: 640px;
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
   background: #fff;
@@ -8,14 +9,17 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+  box-sizing: border-box;
 
   @media (max-width: 768px) {
-    max-width: 90%;
     padding: 16px;
+    border-radius: 8px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 320px) {
     padding: 12px;
+    border-radius: 6px;
+    gap: 10px;
   }
 }
 
@@ -25,19 +29,30 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 15px;
-  font-family: inherit;
   box-sizing: border-box;
 
   &:focus {
     outline: none;
     border-color: #007bff;
-    box-shadow: 0 0 6px #007bff66;
+  }
+
+  @media (max-width: 320px) {
+    padding: 8px 12px;
+    font-size: 14px;
   }
 }
 
 textarea.input {
   min-height: 70px;
   resize: vertical;
+
+  @media (max-width: 320px) {
+    min-height: 60px;
+  }
+}
+
+select.input {
+  appearance: none;
 }
 
 .submitButton {
@@ -46,27 +61,14 @@ textarea.input {
   border: none;
   padding: 12px 20px;
   font-size: 16px;
-  font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
-  align-self: flex-start;
-  transition: background-color 0.2s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
-  &:hover {
-    background-color: #218838;
-  }
-
-  @media (max-width: 480px) {
+  @media (max-width: 320px) {
     width: 100%;
-    padding: 12px 0;
-    align-self: stretch;
+    padding: 12px;
+    font-size: 15px;
   }
-}
-
-select.input {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: none;
-  background-color: #fff;
 }
