@@ -1,0 +1,16 @@
+@import '../../../styles/variables';
+
+.board {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+    padding: 10px;
+  }
+}
+
+.button {
+  justify-self: end;
+}

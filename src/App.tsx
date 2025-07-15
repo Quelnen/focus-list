@@ -1,19 +1,12 @@
 import React from "react";
-import { TaskList } from "./components/TasksList/TaskList/TaskList";
-import { TaskForm } from "./components/TaskForm/Todo-form";
-import { TaskFilter } from "./components/TaskFilter/TaskFilter";
+import KanbanBoard from "../src/components/Kanban/KanbanBoard/KanbanBoard"
+
 
 function App() {
   return (
     <div className="App">
       <section>
-        <TaskForm />
-      </section>
-      <section>
-        <TaskFilter />
-      </section>
-      <section>
-        <TaskList />
+        <KanbanBoard/>
       </section>
     </div>
   );

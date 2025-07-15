@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTask } from "../../store/feature/tasks/tasksSlice";
-import { Task } from "../../types";
+import { addTask } from "../../../store/feature/tasks/tasksSlice";
+import { Task } from "../../../types";
 import styles from "./TaskForm.module.scss";
 
 function TaskForm() {
@@ -9,7 +9,7 @@ function TaskForm() {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState<"active" | "done">("active");
+  const [status, setStatus] = useState<"active" | "done" | "pending">("active");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,6 +54,7 @@ function TaskForm() {
       >
         <option value="active">В процессе</option>
         <option value="done">Выполнено</option>
+        <option value="pending">Отложенно</option>
       </select>
       <button type="submit" className={styles.submitButton}>
         Добавить задачу

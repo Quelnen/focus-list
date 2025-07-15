@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Task } from '../../../types';
-import { useDispatch } from 'react-redux';
-import { updateTask } from '../../../store/feature/tasks/tasksSlice';
-import styles from './TaskEdit.module.scss';
+import React, { useState } from "react";
+import { Task } from "../../../types";
+import { useDispatch } from "react-redux";
+import { updateTask } from "../../../store/feature/tasks/tasksSlice";
+import styles from "./TaskEdit.module.scss";
 
 interface EditTaskProps {
   task: Task;
@@ -21,35 +21,51 @@ export const EditTask: React.FC<EditTaskProps> = ({ task, onClose }) => {
   };
 
   return (
-    <form className={styles.editTask} onSubmit={e => { e.preventDefault(); handleSave(); }}>
-      <input
-        className={styles.input}
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-        placeholder="Название задачи"
-        required
-      />
-      <textarea
-        className={styles.textarea}
-        value={description}
-        onChange={e => setDescription(e.target.value)}
-        placeholder="Описание задачи"
-      />
-      <select
-        className={styles.select}
-        value={status}
-        onChange={e => setStatus(e.target.value)}
-      >
-        <option value="active">В процессе</option>
-        <option value="done">Выполнена</option>
-      </select>
+    <form
+      className={styles.editTask}
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSave();
+      }}
+    >
+      <label>
+        <p className={styles.label}>Название задачи</p>
+        <input
+          className={styles.input}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Название задачи"
+          required
+        />
+      </label>
+      <label>
+        <p className={styles.label}>Описание задачи</p>
+        <textarea
+          className={styles.textarea}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Описание задачи"
+        />
+      </label>
+      <label>
+        <p className={styles.label}>Статус</p>
+        <select
+          className={styles.select}
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+        >
+          <option value="active">В процессе</option>
+          <option value="done">Выполнена</option>
+          <option value="pending">Отложена</option>
+        </select>
+      </label>
       <div className={styles.buttons}>
-        <button type="submit" className={`${styles.button} ${styles.save}`}>
+        <button type="submit" className={`${styles.button} ${styles.edit}`}>
           Сохранить
         </button>
         <button
           type="button"
-          className={`${styles.button} ${styles.cancel}`}
+          className={`${styles.button} ${styles.default}`}
           onClick={onClose}
         >
           Отмена
@@ -58,7 +74,6 @@ export const EditTask: React.FC<EditTaskProps> = ({ task, onClose }) => {
     </form>
   );
 };
-
 
 interface EditTaskProps {
   task: Task;

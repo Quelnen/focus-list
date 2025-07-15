@@ -3,7 +3,7 @@ import { Task } from "../../../types";
 
 export interface TasksState {
   tasks: Task[];
-  filter: "all" | "active" | "done";
+  filter: "all" | "active" | "done"|"pending";
 }
 
 const initialState: TasksState = {
@@ -13,7 +13,7 @@ const initialState: TasksState = {
 
 const tasksSlice = createSlice({
   name: "tasks",
-  initialState,
+  initialState:initialState,
   reducers: {
     addTask(state, action: PayloadAction<Task>) {
       state.tasks.push(action.payload);
@@ -21,7 +21,7 @@ const tasksSlice = createSlice({
     deleteTask(state, action: PayloadAction<string>) {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
-    setFilter(state, action: PayloadAction<"all" | "active" | "done">) {
+    setFilter(state, action: PayloadAction<"all" | "active" | "done"|"pending">) {
       state.filter = action.payload;
     },
     updateTask(state, action: PayloadAction<Task>) {

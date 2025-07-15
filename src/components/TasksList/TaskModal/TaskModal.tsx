@@ -7,7 +7,7 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
-function Modal({ children, onClose }: ModalProps) {
+function TaskModal({ children, onClose }: ModalProps) {
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div
@@ -20,4 +20,4 @@ function Modal({ children, onClose }: ModalProps) {
   );
 }
 
-export default Modal;
+export  {TaskModal};

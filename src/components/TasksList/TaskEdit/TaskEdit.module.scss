@@ -1,9 +1,12 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
 .editTask {
   max-width: 600px;
   width: 100%;
   margin: 0 auto;
   padding: 20px;
-  background: #fff;
+  background: $color-white;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   display: flex;
@@ -11,11 +14,11 @@
   gap: 16px;
   box-sizing: border-box;
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-md) {
     padding: 18px;
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: $breakpoint-xs) {
     padding: 12px;
     gap: 12px;
   }
@@ -24,21 +27,20 @@
 .input,
 .textarea,
 .select {
+  @include font($size: $font-medium);
   width: 100%;
   padding: 10px 14px;
-  font-size: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid $color-border;
   border-radius: 6px;
   box-sizing: border-box;
 
   &:focus {
     outline: none;
-    border-color: #007bff;
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: $breakpoint-xs) {
     padding: 8px 12px;
-    font-size: 14px;
+    @include font($size: 12px);
   }
 }
 
@@ -46,7 +48,7 @@
   min-height: 80px;
   resize: vertical;
 
-  @media (max-width: 320px) {
+  @media (max-width: $breakpoint-xs) {
     min-height: 70px;
   }
 }
@@ -56,34 +58,44 @@
   gap: 12px;
   justify-content: flex-end;
 
-  @media (max-width: 320px) {
+  @media (max-width: $breakpoint-xs) {
     flex-direction: column;
     gap: 8px;
   }
 }
 
 .button {
+  @include font($size: $font-medium);
   padding: 10px 16px;
-  font-size: 15px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: $color-white;
 
-  &.save {
+  &.default {
+    background-color: #007bff;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  &.edit {
     background-color: #28a745;
-    color: white;
+
+    &:hover {
+      background-color: #1e7e34;
+    }
   }
 
-  &.cancel {
-    background-color: #ccc;
-    color: #333;
-  }
-
-  @media (max-width: 320px) {
+  @media (max-width: $breakpoint-xs) {
     width: 100%;
     padding: 10px;
   }
+}
+
+.label {
+  margin: 0;
+  margin-bottom: 4px;
 }
