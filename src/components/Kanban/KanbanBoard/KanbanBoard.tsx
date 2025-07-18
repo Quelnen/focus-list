@@ -40,6 +40,9 @@ function KanbanBoard() {
   }
 
   useEffect(() => {
+    if (!searchQuery) {
+      setFilteredTasks(tasks);
+    }
     let query = searchQuery.trim().toLowerCase();
     if (query) {
       setFilteredTasks(
