@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Task } from "../../../types";
 import { useDispatch } from "react-redux";
 import { updateTask } from "../../../store/feature/tasks/tasksSlice";
+import { TaskButton } from "../TaskButton/TaskButton";
 import styles from "./TaskEdit.module.scss";
 
 interface EditTaskProps {
@@ -63,13 +64,11 @@ export const EditTask: React.FC<EditTaskProps> = ({ task, onClose }) => {
         <button type="submit" className={`${styles.button} ${styles.edit}`}>
           Сохранить
         </button>
-        <button
-          type="button"
-          className={`${styles.button} ${styles.default}`}
-          onClick={onClose}
-        >
-          Отмена
-        </button>
+        <TaskButton
+          variant = {"danger"}
+          callBackFunc={onClose}
+          label="Отмена"
+        />
       </div>
     </form>
   );

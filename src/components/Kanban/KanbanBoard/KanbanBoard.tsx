@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { KanbanColumn } from "../KanbanColumn/KanbanColumn";
@@ -8,10 +8,15 @@ import { TaskForm } from "../../TasksList/TaskForm/Todo-form";
 import { DndContext } from "@dnd-kit/core";
 import styles from "./KanbanBoard.module.scss";
 import { updateTask } from "../../../store/feature/tasks/tasksSlice";
+import { KanbanSearch } from "../KanbanSearch/KanbanSearch";
 
 function KanbanBoard() {
   const dispatch = useDispatch();
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  let tasks = useSelector((state: RootState) => state.tasks.tasks);
+  let [filteredTasks, setFilteredTasks] = useState(tasks);
+  const searchQuery = useSelector(
+    (state: RootState) => state.tasks.searchQuery
+  );
   const [modalToggle, setModal] = useState(false);
   const columns = [
     { title: "Активные", status: "active" },
@@ -34,36 +39,54 @@ function KanbanBoard() {
     return `Draggable item ${id} was dropped.`;
   }
 
+  useEffect(() => {
+    let query = searchQuery.trim().toLowerCase();
+    if (query) {
+      setFilteredTasks(
+        tasks.filter((f) => f.title.toLowerCase().includes(query))
+      );
+    } else {
+      setFilteredTasks(tasks);
+    }
+  }, [searchQuery, tasks]);
+
   return (
-    <DndContext
-      onDragEnd={({ active, over }) => {
-        const id = active.id;
-        const overId = over ? over.id : null;
-        onDragEnd(String(id), String(overId));
-      }}
-    >
-      <div className={styles.button}>
-        <TaskButton
-          label="+Задача"
-          callBackFunc={() => buttonHandler()}
-        ></TaskButton>
-      </div>
-      <div className={styles.board}>
-        {modalToggle && (
-          <TaskModal onClose={buttonHandler}>
-            <TaskForm></TaskForm>
-          </TaskModal>
-        )}
-        {columns.map((col) => (
-          <KanbanColumn
-            key={col.status}
-            title={col.title}
-            status={col.status}
-            tasks={tasks.filter((task) => task.status === col.status)}
-          />
-        ))}
-      </div>
-    </DndContext>
+    <div className={styles.page__wrapper}>
+      <DndContext
+        onDragEnd={({ active, over }) => {
+          const id = active.id;
+          const overId = over ? over.id : null;
+          onDragEnd(String(id), String(overId));
+        }}
+      >
+        <section className={styles.search_wrapper}>
+          <KanbanSearch type={"search"}></KanbanSearch>
+        </section>
+        <section className={styles.buttons__wrapper}>
+          <div className={styles.button}>
+            <TaskButton
+              label="+Задача"
+              callBackFunc={() => buttonHandler()}
+            ></TaskButton>
+          </div>
+        </section>
+        <div className={styles.board}>
+          {modalToggle && (
+            <TaskModal onClose={buttonHandler}>
+              <TaskForm></TaskForm>
+            </TaskModal>
+          )}
+          {columns.map((col) => (
+            <KanbanColumn
+              key={col.status}
+              title={col.title}
+              status={col.status}
+              tasks={filteredTasks.filter((task) => task.status === col.status)}
+            />
+          ))}
+        </div>
+      </DndContext>
+    </div>
   );
 }
 

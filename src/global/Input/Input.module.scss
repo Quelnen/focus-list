@@ -1,0 +1,20 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.input-default{
+  @include font($size: $font-medium);
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid $color-border;
+  border-radius: 6px;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+  }
+
+  @media (max-width: $breakpoint-xs) {
+    padding: 8px 12px;
+    @include font($size: 12px);
+  }
+}

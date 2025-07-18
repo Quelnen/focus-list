@@ -3,17 +3,19 @@ import { Task } from "../../../types";
 
 export interface TasksState {
   tasks: Task[];
-  filter: "all" | "active" | "done"|"pending";
+  filter: "all" | "active" | "done" | "pending";
+  searchQuery: string;
 }
 
 const initialState: TasksState = {
   tasks: [],
   filter: "all",
+  searchQuery: "",
 };
 
 const tasksSlice = createSlice({
   name: "tasks",
-  initialState:initialState,
+  initialState: initialState,
   reducers: {
     addTask(state, action: PayloadAction<Task>) {
       state.tasks.push(action.payload);
@@ -21,7 +23,10 @@ const tasksSlice = createSlice({
     deleteTask(state, action: PayloadAction<string>) {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
-    setFilter(state, action: PayloadAction<"all" | "active" | "done"|"pending">) {
+    setFilter(
+      state,
+      action: PayloadAction<"all" | "active" | "done" | "pending">
+    ) {
       state.filter = action.payload;
     },
     updateTask(state, action: PayloadAction<Task>) {
@@ -30,8 +35,12 @@ const tasksSlice = createSlice({
         state.tasks[index] = action.payload;
       }
     },
+    setSearchQuery(state, action: PayloadAction<string>) {
+      state.searchQuery = action.payload;
+    },
   },
 });
 
-export const { addTask, deleteTask, setFilter,updateTask } = tasksSlice.actions;
+export const { addTask, deleteTask, setFilter, updateTask ,setSearchQuery} =
+  tasksSlice.actions;
 export default tasksSlice.reducer;

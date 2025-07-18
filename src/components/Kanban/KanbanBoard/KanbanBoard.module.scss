@@ -4,13 +4,28 @@
   display: flex;
   gap: 20px;
   overflow-x: auto;
-
+  
   @media (max-width: $breakpoint-md) {
     flex-direction: column;
     padding: 10px;
   }
 }
 
+.page__wrapper {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+
 .button {
   justify-self: end;
+}
+
+.search_wrapper {
+  display: flex;
+}
+
+.buttons__wrapper {
+
 }

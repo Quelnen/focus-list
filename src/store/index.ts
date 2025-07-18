@@ -9,7 +9,7 @@ export const store = configureStore({
     tasks: tasksReducer,
   },
   preloadedState: {
-    tasks: persistedTasks ?? { tasks: [], filter: 'all' },
+    tasks: persistedTasks ?? { tasks: [], filter: 'all' ,searchQuery:""},
   },
 });
 
